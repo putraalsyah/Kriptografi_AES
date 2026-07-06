@@ -73,7 +73,7 @@ Lalu buka `http://localhost:8000` di browser.
 ### Opsi C — Hosting ke domain `.my.id`
 Upload ketiga file (`index.html`, `style.css`, `aes-core.js`, `ui.js`) ke hosting/static site Anda (Netlify, GitHub Pages, Vercel, cPanel, dsb.) yang sudah terhubung ke domain `.my.id` sesuai ketentuan tugas. Tidak ada dependency build/install — cukup upload apa adanya.
 
-Aplikasi ini sudah di-hosting dan dapat diakses langsung di: **[https://aesputraaliansyah.my.id](https://aesputraaliansyah.my.id)**
+Aplikasi ini sudah di-hosting dan dapat diakses langsung di: **[https://www.aesputraaliansyah.my.id](https://www.aesputraaliansyah.my.id)**
 
 ---
 
