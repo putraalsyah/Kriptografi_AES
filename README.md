@@ -4,7 +4,7 @@ Aplikasi web simulasi algoritma **Advanced Encryption Standard (AES-128)** yang 
 
 Dibangun murni dengan **HTML, CSS, dan JavaScript vanilla** (tanpa framework, tanpa library kriptografi pihak ketiga). Seluruh logika AES (SubBytes, ShiftRows, MixColumns, AddRoundKey, Key Expansion, beserta operasi inversnya) diimplementasikan sendiri dari nol.
 
-🔗 **Live demo:** [https://aesputraaliansyah.my.id](https://aesputraaliansyah.my.id)
+🔗 **Live demo:** [https://www.aesputraaliansyah.my.id](https://aesputraaliansyah.my.id)
 
 ---
 
