@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AES-128 Cipher Visualizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">AES</span>
+      <div class="brand-text">
+        <h1>AES-128 Cipher Visualizer</h1>
+        <p>Simulasi langkah demi langkah Advanced Encryption Standard &mdash; 128-bit &middot; mode ECB</p>
+      </div>
+    </div>
+    <div class="badge-row">
+      <span class="pill">128-bit key</span>
+      <span class="pill">10 rounds</span>
+      <span class="pill">GF(2⁸)</span>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- ============================= INPUT PANEL ============================= -->
+  <section class="panel input-panel" aria-label="Form input">
+    <h2 class="panel-title"><span class="idx">01</span> Data Masukan</h2>
+
+    <div class="field-group">
+      <label class="field-label">Format Plaintext</label>
+      <div class="segmented" id="ptFormatToggle">
+        <button type="button" class="seg-btn active" data-fmt="text">Teks (maks 16 char)</button>
+        <button type="button" class="seg-btn" data-fmt="hex">Hex (32 karakter)</button>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="plaintextInput" id="ptLabel">Plaintext</label>
+      <input type="text" id="plaintextInput" class="mono-input" placeholder="Contoh: HELLO CRYPTOGRAPHY" maxlength="16" autocomplete="off">
+      <p class="field-hint" id="ptHint">0 / 16 karakter &middot; akan di-padding dengan 0x00 bila kurang dari 16 byte</p>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label" for="keyInput">Kunci AES-128 (32 karakter hex / 16 byte)</label>
+      <input type="text" id="keyInput" class="mono-input" placeholder="000102030405060708090a0b0c0d0e0f" maxlength="32" autocomplete="off">
+      <p class="field-hint" id="keyHint">0 / 32 karakter hex</p>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Mode Operasi</label>
+      <div class="segmented" id="modeToggle">
+        <button type="button" class="seg-btn active" data-mode="encrypt">Enkripsi</button>
+        <button type="button" class="seg-btn" data-mode="decrypt">Dekripsi</button>
+      </div>
+    </div>
+
+    <div class="field-group" id="cipherInputWrap" style="display:none;">
+      <label class="field-label" for="ciphertextInput">Ciphertext (32 karakter hex)</label>
+      <input type="text" id="ciphertextInput" class="mono-input" placeholder="69c4e0d86a7b0430d8cdb78070b4c55a" maxlength="32" autocomplete="off">
+      <p class="field-hint" id="ctHint">0 / 32 karakter hex</p>
+    </div>
+
+    <div class="field-group toggle-row">
+      <label class="switch">
+        <input type="checkbox" id="showDetailToggle" checked>
+        <span class="switch-track"><span class="switch-thumb"></span></span>
+      </label>
+      <span>Tampilkan detail perhitungan step-by-step</span>
+    </div>
+
+    <div id="errorBox" class="error-box" hidden></div>
+
+    <div class="btn-row">
+      <button type="button" id="runBtn" class="btn btn-primary">
+        <span id="runBtnLabel">JALANKAN ENKRIPSI</span>
+      </button>
+      <button type="button" id="resetBtn" class="btn btn-ghost">RESET</button>
+    </div>
+  </section>
+
+  <!-- ============================= OUTPUT PANEL ============================= -->
+  <section class="panel output-panel" aria-label="Hasil">
+    <h2 class="panel-title"><span class="idx">02</span> Hasil</h2>
+    <div class="output-display" id="outputDisplay">
+      <span class="output-placeholder">Hasil akan muncul di sini setelah dijalankan&hellip;</span>
+    </div>
+    <button type="button" id="copyBtn" class="btn btn-ghost small" style="display:none;">SALIN HASIL</button>
+  </section>
+
+  <!-- ============================= DETAIL SECTION ============================= -->
+  <section class="detail-wrap" id="detailWrap" style="display:none;">
+
+    <nav class="side-nav" id="sideNav" aria-label="Navigasi ronde">
+      <p class="side-nav-title">Navigasi</p>
+      <ol id="sideNavList" class="side-nav-list"></ol>
+    </nav>
+
+    <div class="detail-content">
+      <h2 class="panel-title"><span class="idx">03</span> Detail Proses Perhitungan</h2>
+      <div id="detailContent"></div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Dibangun untuk Tugas Individu Mata Kuliah Kriptografi &middot; Implementasi AES-128 mandiri (tanpa library kriptografi pihak ketiga) &middot; Semester Genap 2025/2026</p>
+</footer>
+
+<script src="aes-core.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>
